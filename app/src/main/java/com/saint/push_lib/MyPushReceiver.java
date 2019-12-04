@@ -1,6 +1,7 @@
 package com.saint.push_lib;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ public class MyPushReceiver extends BasePushReceiver {
     @Override
     public void onReceiveNotification(Context context, ReceiverInfo info) {
         Log.e(TAG, "onReceiveNotification：" + info.toString());
+
     }
 
     @Override
@@ -42,6 +44,10 @@ public class MyPushReceiver extends BasePushReceiver {
     @Override
     public void onInitResult(Context context, ReceiverInfo info) {
         Log.e(TAG, "onInitResult：" + info.toString());
+        Intent intent = new Intent(BroadcastUtil.ACTION_INIT);
+        intent.putExtra("init", info.toString());
+        intent.setPackage(context.getPackageName());
+        BroadcastUtil.instance().sendBroadCast(context, intent);
     }
 
     @Override
