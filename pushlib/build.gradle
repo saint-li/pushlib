@@ -15,6 +15,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            // 还可以添加 'x86', 'armeabi', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "",//JPush 上注册的包名
+                JPUSH_APPKEY : "",//JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "", //暂时填写默认值即可.
+                MIPUSH_APPID : "",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                MIPUSH_APPKEY: "",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                OPPO_APPKEY  : "",//oppo推送Appkey配置
+                OPPO_SECRET  : "",//oppo推送AppSecret配置
+        ]
     }
 
     buildTypes {
