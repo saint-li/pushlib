@@ -124,27 +124,27 @@
 
         <!--//小米推送的AppKey ,APPID ****请务必在数值中间添加一个空格，否则会发生数值变化**** -->
 
-        <meta-data
-                android:name="MIPUSH_APPKEY"
-                android:value="${MIPUSH_APPKEY}" />
+<!--        <meta-data-->
+<!--                android:name="MIPUSH_APPKEY"-->
+<!--                android:value="${MIPUSH_APPKEY}" />-->
 
-        <meta-data
-                android:name="MIPUSH_APPID"
-                android:value="${MIPUSH_APPID}" />
+<!--        <meta-data-->
+<!--                android:name="MIPUSH_APPID"-->
+<!--                android:value="${MIPUSH_APPID}" />-->
 
-        <!--//小米推送的AppKey ,APPID ****请务必在数值中间添加一个空格，否则会发生数值变化**** -->
+<!--        &lt;!&ndash;//小米推送的AppKey ,APPID ****请务必在数值中间添加一个空格，否则会发生数值变化**** &ndash;&gt;-->
 
-        <!--   小米Push  结束     -->
+<!--        &lt;!&ndash;   小米Push  结束     &ndash;&gt;-->
 
 
-        <!--   OPPOPush  开始     -->
-        <meta-data
-                android:name="OPPO_APPKEY"
-                android:value="${OPPO_APPKEY}" />
+<!--        &lt;!&ndash;   OPPOPush  开始     &ndash;&gt;-->
+<!--        <meta-data-->
+<!--                android:name="OPPO_APPKEY"-->
+<!--                android:value="${OPPO_APPKEY}" />-->
 
-        <meta-data
-                android:name="OPPO_SECRET"
-                android:value="${OPPO_SECRET}" />
+<!--        <meta-data-->
+<!--                android:name="OPPO_SECRET"-->
+<!--                android:value="${OPPO_SECRET}" />-->
 
         <service
                 android:name="com.heytap.mcssdk.PushService"
