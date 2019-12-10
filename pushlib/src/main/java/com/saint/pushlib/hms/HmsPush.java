@@ -11,6 +11,7 @@ import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.aaid.HmsInstanceId;
 import com.huawei.hms.push.HmsMessaging;
 import com.saint.pushlib.BasePushInit;
+import com.saint.pushlib.PushControl;
 import com.saint.pushlib.R;
 import com.saint.pushlib.PushConstant;
 import com.saint.pushlib.bean.ReceiverInfo;
@@ -32,11 +33,22 @@ public class HmsPush extends BasePushInit {
         super(isDebug, application);
         instanceId = HmsInstanceId.getInstance(application);
         appId = AGConnectServicesConfig.fromContext(application).getString("client/app_id");
-        ReceiverInfo info = new ReceiverInfo();
-        info.setPushType(PushConstant.HUAWEI);
-        info.setContent("华为初始化ID：" + appId);
-        info.setTitle(mContext.getString(R.string.init_succeed));
-        PushReceiverManager.getInstance().onRegistration(application, info);
+        PushLog.e("appId:" + appId);
+        if (TextUtils.isEmpty(appId)) {
+            ReceiverInfo info = new ReceiverInfo();
+            info.setPushType(PushConstant.HUAWEI);
+            info.setContent("华为初始化");
+            info.setTitle(mContext.getString(R.string.init_failed));
+            PushReceiverManager.getInstance().onRegistration(application, info);
+            PushControl.getInstance().setEnableOPPOPush(false);
+            PushControl.getInstance().init(isDebug, application);
+        } else {
+            ReceiverInfo info = new ReceiverInfo();
+            info.setPushType(PushConstant.HUAWEI);
+            info.setContent("华为初始化");
+            info.setTitle(mContext.getString(R.string.init_succeed));
+            PushReceiverManager.getInstance().onRegistration(application, info);
+        }
     }
 
 

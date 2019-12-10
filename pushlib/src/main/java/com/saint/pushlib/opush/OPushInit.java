@@ -26,6 +26,7 @@ public class OPushInit extends BasePushInit {
         super(isDebug, application);
         String appSecret = ApplicationUtil.getMetaData(application, "OPPO_SECRET");
         String appKey = ApplicationUtil.getMetaData(application, "OPPO_APPKEY");
+        PushLog.e("appSecret:" + appSecret + " appKey:" + appKey);
         if (!TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
             PushManager.getInstance().register(application, appKey, appSecret, new PushAdapter());
             ReceiverInfo info = new ReceiverInfo();
@@ -34,6 +35,11 @@ public class OPushInit extends BasePushInit {
             info.setTitle(mContext.getString(R.string.init_succeed));
             PushReceiverManager.getInstance().onRegistration(application, info);
         } else {
+            PushManager.getInstance().register(application, appKey, appSecret, new PushAdapter());
+            ReceiverInfo info = new ReceiverInfo();
+            info.setPushType(PushConstant.OPPO);
+            info.setContent("OPPO推送初始化");
+            info.setTitle(mContext.getString(R.string.init_failed));
             PushControl.getInstance().setEnableOPPOPush(false);
             PushControl.getInstance().init(isDebug, application);
         }

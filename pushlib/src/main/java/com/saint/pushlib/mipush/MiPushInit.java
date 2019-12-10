@@ -5,6 +5,7 @@ import android.app.Application;
 import android.text.TextUtils;
 
 import com.saint.pushlib.BasePushInit;
+import com.saint.pushlib.PushControl;
 import com.saint.pushlib.R;
 import com.saint.pushlib.PushConstant;
 import com.saint.pushlib.bean.ReceiverInfo;
@@ -27,7 +28,17 @@ public class MiPushInit extends BasePushInit {
         //注册SDK
         String appId = ApplicationUtil.getMetaData(application, "MIPUSH_APPID");
         String appKey = ApplicationUtil.getMetaData(application, "MIPUSH_APPKEY");
-        if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(appKey)) return;
+        PushLog.e("appId:" + appId + " appKey:" + appKey);
+        if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(appKey)) {
+            ReceiverInfo info = new ReceiverInfo();
+            info.setPushType(PushConstant.XIAOMI);
+            info.setContent("小米推送初始化");
+            info.setTitle(mContext.getString(R.string.init_failed));
+            PushReceiverManager.getInstance().onRegistration(application, info);
+            PushControl.getInstance().setEnableOPPOPush(false);
+            PushControl.getInstance().init(isDebug, application);
+            return;
+        }
         MiPushClient.registerPush(application
                 , appId.replaceAll(" ", "")
                 , appKey.replaceAll(" ", ""));
@@ -50,6 +61,11 @@ public class MiPushInit extends BasePushInit {
             };
             Logger.setLogger(application, newLogger);
         }
+        ReceiverInfo info = new ReceiverInfo();
+        info.setPushType(PushConstant.XIAOMI);
+        info.setContent("小米推送初始化");
+        info.setTitle(mContext.getString(R.string.init_succeed));
+        PushReceiverManager.getInstance().onRegistration(application, info);
     }
 
     @Override
