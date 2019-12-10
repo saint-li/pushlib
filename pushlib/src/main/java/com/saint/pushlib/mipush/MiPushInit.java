@@ -35,37 +35,38 @@ public class MiPushInit extends BasePushInit {
             info.setContent("小米推送初始化");
             info.setTitle(mContext.getString(R.string.init_failed));
             PushReceiverManager.getInstance().onRegistration(application, info);
-            PushControl.getInstance().setEnableOPPOPush(false);
+            PushControl.getInstance().setEnableMiPush(false);
             PushControl.getInstance().init(isDebug, application);
-            return;
-        }
-        MiPushClient.registerPush(application
-                , appId.replaceAll(" ", "")
-                , appKey.replaceAll(" ", ""));
-        if (isDebug) {
-            LoggerInterface newLogger = new LoggerInterface() {
-                @Override
-                public void setTag(String tag) {
-                    // ignore
-                }
+        } else {
+            MiPushClient.registerPush(application
+                    , appId.replaceAll(" ", "")
+                    , appKey.replaceAll(" ", ""));
+            if (isDebug) {
+                LoggerInterface newLogger = new LoggerInterface() {
+                    @Override
+                    public void setTag(String tag) {
+                        // ignore
+                    }
 
-                @Override
-                public void log(String content, Throwable t) {
-                    PushLog.e(content, t);
-                }
+                    @Override
+                    public void log(String content, Throwable t) {
+                        PushLog.e(content, t);
+                    }
 
-                @Override
-                public void log(String content) {
-                    PushLog.d(content);
-                }
-            };
-            Logger.setLogger(application, newLogger);
+                    @Override
+                    public void log(String content) {
+                        PushLog.d(content);
+                    }
+                };
+                Logger.setLogger(application, newLogger);
+            }
+            ReceiverInfo info = new ReceiverInfo();
+            info.setPushType(PushConstant.XIAOMI);
+            info.setContent("小米推送初始化");
+            info.setTitle(mContext.getString(R.string.init_succeed));
+            PushReceiverManager.getInstance().onRegistration(application, info);
         }
-        ReceiverInfo info = new ReceiverInfo();
-        info.setPushType(PushConstant.XIAOMI);
-        info.setContent("小米推送初始化");
-        info.setTitle(mContext.getString(R.string.init_succeed));
-        PushReceiverManager.getInstance().onRegistration(application, info);
+
     }
 
     @Override

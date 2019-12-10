@@ -37,10 +37,10 @@ public class HmsPush extends BasePushInit {
         if (TextUtils.isEmpty(appId)) {
             ReceiverInfo info = new ReceiverInfo();
             info.setPushType(PushConstant.HUAWEI);
-            info.setContent("华为初始化");
+            info.setContent("华为推送初始化");
             info.setTitle(mContext.getString(R.string.init_failed));
             PushReceiverManager.getInstance().onRegistration(application, info);
-            PushControl.getInstance().setEnableOPPOPush(false);
+            PushControl.getInstance().setEnableHWPush(false);
             PushControl.getInstance().init(isDebug, application);
         } else {
             ReceiverInfo info = new ReceiverInfo();
