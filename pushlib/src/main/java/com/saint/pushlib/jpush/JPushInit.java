@@ -26,7 +26,7 @@ public class JPushInit extends BasePushInit {
         JPushInterface.init(application);
         ReceiverInfo info = new ReceiverInfo();
         info.setPushType(PushConstant.JPUSH);
-        info.setContent("极光初始化");
+        info.setTitle("极光推送");
         info.setTitle(mContext.getString(R.string.init_succeed));
         PushReceiverManager.getInstance().onRegistration(application, info);
     }

@@ -32,8 +32,8 @@ public class MiPushInit extends BasePushInit {
         if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(appKey)) {
             ReceiverInfo info = new ReceiverInfo();
             info.setPushType(PushConstant.XIAOMI);
-            info.setContent("小米推送初始化");
-            info.setTitle(mContext.getString(R.string.init_failed));
+            info.setTitle("小米推送");
+            info.setContent(mContext.getString(R.string.init_failed));
             PushReceiverManager.getInstance().onRegistration(application, info);
             PushControl.getInstance().setEnableMiPush(false);
             PushControl.getInstance().init(isDebug, application);
@@ -62,8 +62,8 @@ public class MiPushInit extends BasePushInit {
             }
             ReceiverInfo info = new ReceiverInfo();
             info.setPushType(PushConstant.XIAOMI);
-            info.setContent("小米推送初始化");
-            info.setTitle(mContext.getString(R.string.init_succeed));
+            info.setTitle("小米推送");
+            info.setContent(mContext.getString(R.string.init_succeed));
             PushReceiverManager.getInstance().onRegistration(application, info);
         }
 
