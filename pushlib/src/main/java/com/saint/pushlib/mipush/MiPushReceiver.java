@@ -72,7 +72,7 @@ public class MiPushReceiver extends PushMessageReceiver {
                 log = context.getString(R.string.init_failed);
             }
             ReceiverInfo info = convert2ReceiverInfo(message);
-            info.setTitle(log);
+            info.setTitle("小米推送");
             info.setContent(log);
             PushReceiverManager.getInstance().onRegistration(context, info);
         }

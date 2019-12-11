@@ -60,13 +60,7 @@ public class MiPushInit extends BasePushInit {
                 };
                 Logger.setLogger(application, newLogger);
             }
-            ReceiverInfo info = new ReceiverInfo();
-            info.setPushType(PushConstant.XIAOMI);
-            info.setTitle("小米推送");
-            info.setContent(mContext.getString(R.string.init_succeed));
-            PushReceiverManager.getInstance().onRegistration(application, info);
         }
-
     }
 
     @Override
