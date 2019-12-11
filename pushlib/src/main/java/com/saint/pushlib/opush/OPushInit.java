@@ -31,15 +31,15 @@ public class OPushInit extends BasePushInit {
             PushManager.getInstance().register(application, appKey, appSecret, new PushAdapter());
             ReceiverInfo info = new ReceiverInfo();
             info.setPushType(PushConstant.OPPO);
-            info.setContent("OPPO推送初始化");
-            info.setTitle(mContext.getString(R.string.init_succeed));
+            info.setTitle("OPPO推送");
+            info.setContent(mContext.getString(R.string.init_succeed));
             PushReceiverManager.getInstance().onRegistration(application, info);
         } else {
             PushManager.getInstance().register(application, appKey, appSecret, new PushAdapter());
             ReceiverInfo info = new ReceiverInfo();
             info.setPushType(PushConstant.OPPO);
-            info.setContent("OPPO推送初始化");
-            info.setTitle(mContext.getString(R.string.init_failed));
+            info.setTitle("OPPO推送");
+            info.setContent(mContext.getString(R.string.init_failed));
             PushControl.getInstance().setEnableOPPOPush(false);
             PushControl.getInstance().init(isDebug, application);
         }
