@@ -1,5 +1,6 @@
 package com.saint.pushlib.hms
 
+import android.text.TextUtils
 import com.huawei.hms.push.HmsMessageService
 import com.huawei.hms.push.RemoteMessage
 import com.saint.pushlib.PushConstant
@@ -14,11 +15,13 @@ class HmsMsgService : HmsMessageService() {
         super.onNewToken(token)
         i("华为pushToken: $token")
         //获取token成功，token用于标识设备的唯一性
-        val info = createReceiverInfo()
-        info.title = applicationContext.getString(R.string.get_token)
-        info.content = token
-        info.pushType = PushConstant.HUAWEI
-        PushReceiverManager.setToken(this, info)
+        if (!TextUtils.isEmpty(token)) {
+            val info = createReceiverInfo()
+            info.title = applicationContext.getString(R.string.get_token)
+            info.content = token
+            info.pushType = PushConstant.HUAWEI
+            PushReceiverManager.setToken(this, info)
+        }
     }
 
     override fun onMessageReceived(message: RemoteMessage) {

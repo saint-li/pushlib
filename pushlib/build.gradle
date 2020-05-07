@@ -51,7 +51,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //华为push
-    implementation 'com.huawei.hms:push:3.0.2.300'
+    implementation 'com.huawei.hms:push:4.0.3.301'
     //极光推送
     implementation 'cn.jiguang.sdk:jpush:3.4.1'
     implementation 'cn.jiguang.sdk:jcore:2.2.4'

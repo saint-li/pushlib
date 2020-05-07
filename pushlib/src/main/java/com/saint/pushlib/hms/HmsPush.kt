@@ -17,9 +17,8 @@ import com.saint.pushlib.util.PushLog.Companion.e
 import com.saint.pushlib.util.PushLog.Companion.i
 
 class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
-    private val appId: String =
-        AGConnectServicesConfig.fromContext(application).getString("client/app_id")
-    private val instanceId: HmsInstanceId = HmsInstanceId.getInstance(application)
+    private val appId = AGConnectServicesConfig.fromContext(application).getString("client/app_id")
+    private val instanceId = HmsInstanceId.getInstance(application)
 
     /**
      * 推送初始化
@@ -75,6 +74,12 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
                     val pushtoken = instanceId.getToken(appId, "HCM")
                     if (!TextUtils.isEmpty(pushtoken)) {
                         i("get token:$pushtoken")
+                        val info = ReceiverInfo()
+                        info.pushType = PushConstant.HUAWEI
+                        info.title = mContext.getString(R.string.get_token)
+                        info.content = pushtoken
+                        info.pushType = PushConstant.HUAWEI
+                        PushReceiverManager.setToken(mContext, info)
                     }
                 } catch (e: Exception) {
                     e("getToken failed, $e")
