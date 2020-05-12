@@ -8,7 +8,10 @@ import android.content.Context
  */
 abstract class BasePushInit(isDebug: Boolean, private var mApplication: Application) {
     @JvmField
-    protected var mContext: Context = mApplication.applicationContext
+    protected var mContext: Application = mApplication
+
+    @JvmField
+    protected var isDebug = isDebug
 
     @JvmField
     protected var mAlias: String? = null
@@ -24,5 +27,7 @@ abstract class BasePushInit(isDebug: Boolean, private var mApplication: Applicat
 
     open fun loginOut() {}
     open fun loginIn() {}
+
+    open fun pushStatus() {}
 
 }

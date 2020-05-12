@@ -8,8 +8,8 @@ import com.huawei.hms.aaid.HmsInstanceId
 import com.huawei.hms.push.HmsMessaging
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
-import com.saint.pushlib.PushControl.init
-import com.saint.pushlib.PushControl.setEnableHWPush
+import com.saint.pushlib.PushManager.init
+import com.saint.pushlib.PushManager.setEnableHWPush
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager

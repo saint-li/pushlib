@@ -42,14 +42,22 @@ android {
         }
     }
 
+//    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+//    }
+
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //华为推送
     implementation 'com.huawei.hms:push:4.0.3.301'
     //极光推送
@@ -58,9 +66,7 @@ dependencies {
     //小米推送
     implementation files('libs/MiPush_SDK_Client_3_7_0.jar')
     //OPPO推送
-    implementation files('libs/mcssdk-2.0.2.jar')
-    implementation "androidx.core:core-ktx:1.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation(name: 'com.heytap.msp', ext: 'aar')
 }
 repositories {
     mavenCentral()

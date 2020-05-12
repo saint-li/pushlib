@@ -2,7 +2,7 @@ package com.saint.pushlib
 
 import android.app.Application
 import android.content.Context
-import com.heytap.mcssdk.PushManager
+import com.heytap.msp.push.HeytapPushManager
 import com.saint.pushlib.PushConstant.HUAWEI
 import com.saint.pushlib.PushConstant.JPUSH
 import com.saint.pushlib.PushConstant.OPPO
@@ -15,7 +15,7 @@ import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushUtil.isMainProcess
 import com.saint.pushlib.util.RomUtil
 
-object PushControl {
+object PushManager {
     /**
      * 当前的推送平台，默认为极光 JPUSH
      */
@@ -62,12 +62,16 @@ object PushControl {
         init(isDebug, app)
     }
 
-    private fun getPhoneType(context: Context?): Int {
+    private fun getPhoneType(context: Context): Int {
+        context.packageManager
         val phoneType: Int = if (RomUtil.isHuaweiRom() && enableHWPush) {
             HUAWEI
         } else if (RomUtil.isMiuiRom() && enableMiPush) {
             XIAOMI
-        } else if (RomUtil.isOPPORom() && PushManager.isSupportPush(context) && enableOPPOPush) {
+        } else if (RomUtil.isOPPORom()
+//            && HeytapPushManager.isSupportPush()//新版检测只有初始化之后才能调用
+            && enableOPPOPush
+        ) {
             OPPO
         } else {
             JPUSH
@@ -95,6 +99,10 @@ object PushControl {
      */
     fun loginOut() {
         mPushTarget!!.loginOut()
+    }
+
+    fun pushStatus() {
+        mPushTarget!!.pushStatus()
     }
 
     fun setEnableHWPush(enableHWPush: Boolean) {

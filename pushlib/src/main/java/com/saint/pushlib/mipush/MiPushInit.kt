@@ -4,8 +4,8 @@ import android.app.Application
 import android.text.TextUtils
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
-import com.saint.pushlib.PushControl.init
-import com.saint.pushlib.PushControl.setEnableMiPush
+import com.saint.pushlib.PushManager.init
+import com.saint.pushlib.PushManager.setEnableMiPush
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
