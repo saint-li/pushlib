@@ -66,6 +66,6 @@ dependencies {
     //小米推送
     implementation files('libs/MiPush_SDK_Client_3_7_0.jar')
     //OPPO推送
-//    implementation(name: 'com.heytap.msp', ext: 'aar')
-    implementation project(path: ':aarlib')
+    implementation(name: 'com.heytap.msp', ext: 'aar')
+//    implementation project(path: ':aarlib')
 }

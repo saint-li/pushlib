@@ -43,5 +43,5 @@ task clean(type: Delete) {
 }
 
 ext{
-    AAR_LIB_PATH = projectDir.getPath() +  "/aarlib/libs"
+    AAR_LIB_PATH = projectDir.getPath() +  "/pushlib/libs"
 }
