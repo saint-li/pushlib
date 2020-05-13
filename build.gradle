@@ -25,15 +25,23 @@ allprojects {
         maven { url 'https://jitpack.io' }
         maven {url 'http://developer.huawei.com/repo/'}
         /**子模块含有aar:添加全局引用*/
+//        flatDir {
+//            // 由于Library module中引用了 fusion 库的 aar，在多 module 的情况下，
+//            // 其他的module编译会报错，所以需要在所有工程的repositories
+//            // 下把Library module中的libs目录添加到依赖关系中
+//            dirs project(':pushlib').file('libs')
+//        }
+//        flatDir { dirs 'libs', '../pushlib/libs' }
         flatDir {
-            // 由于Library module中引用了 fusion 库的 aar，在多 module 的情况下，
-            // 其他的module编译会报错，所以需要在所有工程的repositories
-            // 下把Library module中的libs目录添加到依赖关系中
-            dirs project(':pushlib').file('libs')
+            dirs 'libs'
         }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext{
+    AAR_LIB_PATH = projectDir.getPath() +  "/aarlib/libs"
 }

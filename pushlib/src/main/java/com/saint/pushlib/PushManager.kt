@@ -87,11 +87,14 @@ object PushManager {
 
     /**
      * 登录，华为登录需要在activity中
-     *
+     *  延迟执行，因小米出现初始化后就获取registerid出现为空的情况
      * @param activity
      */
     fun loginIn() {
-        mPushTarget!!.loginIn()
+        Thread(Runnable {
+            Thread.sleep(500)
+            mPushTarget!!.loginIn()
+        }).start()
     }
 
     /**
