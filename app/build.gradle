@@ -29,14 +29,14 @@ android {
         //推送配置
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-//                JPUSH_APPKEY : "730ec2fe04e2089cddc30c3f", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_APPKEY : "0218438a6cb8745848151f61", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
-                MIPUSH_APPID : "28823 03761518072648 ",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
-                MIPUSH_APPKEY: "53418 07246648",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
-                OPPO_APPID   : "30275023",//oppo推送AppId配置
-                OPPO_APPKEY  : "a2403727f2964d0c8ea00c325bfe397a",//oppo推送Appkey配置
-                OPPO_SECRET  : "8291e9fb54024ac99d648a87ddf40da2",//oppo推送AppSecret配置
+//                JPUSH_APPKEY : "", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "", //暂时填写默认值即可.
+                MIPUSH_APPID : "",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                MIPUSH_APPKEY: "",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                OPPO_APPID   : "",//oppo推送AppId配置
+                OPPO_APPKEY  : "",//oppo推送Appkey配置
+                OPPO_SECRET  : "",//oppo推送AppSecret配置
         ]
     }
 
@@ -87,6 +87,6 @@ dependencies {
 
 //    implementation(name: 'pushlib-release', ext: 'aar')
     //推送依赖
-//    implementation project(path: ':pushlib')
-    implementation 'com.github.saint-li:pushlib:2.0.3'
+    implementation project(path: ':pushlib')
+//    implementation 'com.github.saint-li:pushlib:2.0.3'
 }
