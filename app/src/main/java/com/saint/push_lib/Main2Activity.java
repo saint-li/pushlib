@@ -24,11 +24,17 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         tvInitResult = findViewById(R.id.tv_init_result);
         initReceiver();
-        PushControl.getInstance().init(true
+        PushControl.INSTANCE.init(true
                 , getApplication()
                 , false
                 , false
-                , false);
+                , true);
+        tvInitResult.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                PushControl.INSTANCE.loginIn();
+            }
+        }, 500);
     }
 
     private void initReceiver() {

@@ -8,6 +8,7 @@ import com.huawei.hms.aaid.HmsInstanceId
 import com.huawei.hms.push.HmsMessaging
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
+import com.saint.pushlib.PushConstant.HUAWEI
 import com.saint.pushlib.PushControl.init
 import com.saint.pushlib.PushControl.setEnableHWPush
 import com.saint.pushlib.R
@@ -27,21 +28,10 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
      * @param application --
      */
     init {
-        i("appId:$appId")
         if (TextUtils.isEmpty(appId)) {
-            val info = ReceiverInfo()
-            info.pushType = PushConstant.HUAWEI
-            info.title = "华为推送"
-            info.content = mContext.getString(R.string.init_failed)
-            PushReceiverManager.onRegistration(application, info)
-            setEnableHWPush(false)
-            init(isDebug, application!!)
+            initFailed(getString(R.string.HUAWEI), HUAWEI, "appId:$appId")
         } else {
-            val info = ReceiverInfo()
-            info.pushType = PushConstant.HUAWEI
-            info.title = "华为推送"
-            info.content = mContext.getString(R.string.init_succeed)
-            PushReceiverManager.onRegistration(application, info)
+            initSucceed(getString(R.string.HUAWEI), HUAWEI)
         }
     }
 
@@ -73,13 +63,7 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
                     i("华为ID：$appId")
                     val pushtoken = instanceId.getToken(appId, "HCM")
                     if (!TextUtils.isEmpty(pushtoken)) {
-                        i("get token:$pushtoken")
-                        val info = ReceiverInfo()
-                        info.pushType = PushConstant.HUAWEI
-                        info.title = mContext.getString(R.string.get_token)
-                        info.content = pushtoken
-                        info.pushType = PushConstant.HUAWEI
-                        PushReceiverManager.setToken(mContext, info)
+                        onToken(pushtoken, HUAWEI)
                     }
                 } catch (e: Exception) {
                     e("getToken failed, $e")

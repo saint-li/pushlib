@@ -1,0 +1,11 @@
+{
+	"client":{
+		"cp_id":"",
+		"product_id":"",
+		"client_id":"",
+		"client_secret":"",
+		"app_id":"",
+		"package_name":"com.saint.push_lib"
+	},
+	"configuration_version":"1.0"
+}

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 //华为推送配置--需要在应用build.gradle 内添加才生效
 //apply plugin: 'com.huawei.agconnect'
 
@@ -24,15 +24,15 @@ android {
             // 还可以添加 'x86', 'armeabi', 'mips', 'mips64'
         }
 
-        manifestPlaceholders = [
-                JPUSH_PKGNAME: "",//JPush 上注册的包名
-                JPUSH_APPKEY : "",//JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL: "", //暂时填写默认值即可.
+//        manifestPlaceholders = [
+//                JPUSH_PKGNAME: "",//JPush 上注册的包名
+//                JPUSH_APPKEY : "",//JPush 上注册的包名对应的 Appkey.
+//                JPUSH_CHANNEL: "", //暂时填写默认值即可.
 //                MIPUSH_APPID : "",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
 //                MIPUSH_APPKEY: "",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
 //                OPPO_APPKEY  : "",//oppo推送Appkey配置
 //                OPPO_SECRET  : "",//oppo推送AppSecret配置
-        ]
+//        ]
     }
 
     buildTypes {
@@ -50,6 +50,8 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //华为推送
     implementation 'com.huawei.hms:push:4.0.3.301'
     //极光推送
@@ -59,8 +61,6 @@ dependencies {
     implementation files('libs/MiPush_SDK_Client_3_7_0.jar')
     //OPPO推送
     implementation files('libs/mcssdk-2.0.2.jar')
-    implementation "androidx.core:core-ktx:1.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()
