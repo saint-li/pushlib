@@ -120,6 +120,14 @@ object PushManager {
         this.enableOPPOPush = enableOPPOPush
     }
 
+    fun setEnablePush(type: Int) {
+        when (type) {
+            HUAWEI -> setEnableHWPush(false)
+            XIAOMI -> setEnableMiPush(false)
+            OPPO -> setEnableOPPOPush(false)
+        }
+    }
+
     fun setAlias(alias: String?) {
         mPushTarget!!.setAlias(alias)
     }
