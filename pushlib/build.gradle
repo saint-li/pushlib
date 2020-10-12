@@ -58,7 +58,7 @@ dependencies {
     implementation 'cn.jiguang.sdk:jpush:3.6.0'
     implementation 'cn.jiguang.sdk:jcore:2.3.4'
     //小米推送
-    implementation files('libs/MiPush_SDK_Client_3_7_0.jar')
+    implementation files('libs/MiPush_SDK_Client_3_8_0.jar')
     //OPPO推送
     implementation files('libs/mcssdk-2.0.2.jar')
 }

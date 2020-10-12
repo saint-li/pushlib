@@ -27,14 +27,14 @@ public class Main2Activity extends AppCompatActivity {
         PushControl.INSTANCE.init(true
                 , getApplication()
                 , false
-                , false
+                , true
                 , true);
         tvInitResult.postDelayed(new Runnable() {
             @Override
             public void run() {
                 PushControl.INSTANCE.loginIn();
             }
-        }, 500);
+        }, 2000);
     }
 
     private void initReceiver() {
