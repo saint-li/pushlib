@@ -25,12 +25,17 @@ class ReceiverInfo : Serializable {
     /**
      * 额外数据
      */
-    var extra = ""
+    var extra: Map<String, String>? = null
 
     /**
      * 额外数据
      */
     var type = ""
+
+    /**
+     * 额外数据
+     */
+    var desc = ""
 
     override fun toString(): String {
         return "ReceiverInfo{" +

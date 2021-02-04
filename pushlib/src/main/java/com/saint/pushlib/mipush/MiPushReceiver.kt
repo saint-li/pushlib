@@ -89,7 +89,7 @@ class MiPushReceiver : PushMessageReceiver() {
         info.pushType = PushConstant.XIAOMI
         info.title = message.title
         if (message.content != null) {
-            info.extra = message.content
+            info.extra = message.extra
         }
         return info
     }

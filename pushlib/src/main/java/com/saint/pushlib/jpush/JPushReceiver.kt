@@ -70,7 +70,7 @@ class JPushReceiver : JPushMessageReceiver() {
         val info = ReceiverInfo()
         info.title = notificationMessage.notificationTitle
         info.content = notificationMessage.notificationContent
-        info.extra = notificationMessage.notificationExtras
+//        info.extra = notificationMessage.notificationExtras
         info.pushType = PushConstant.JPUSH
         return info
     }

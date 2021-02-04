@@ -36,7 +36,7 @@ class OppoPushService : PushService() {
         e("spt processMessage: handle:$sptDataMessage")
         val info = ReceiverInfo()
         info.content = sptDataMessage.content
-        info.extra = sptDataMessage.description
+        info.desc = sptDataMessage.description
         info.pushType = PushConstant.OPPO
         PushReceiverManager.onMessageReceived(context, info)
     }
