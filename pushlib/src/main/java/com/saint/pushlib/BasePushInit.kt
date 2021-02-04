@@ -44,7 +44,7 @@ abstract class BasePushInit(isDebug: Boolean, private var mApplication: Applicat
         info.title = title
         info.pushType = pushType
         info.content = mContext.getString(R.string.init_failed)
-        info.extra = errorMsg
+        info.desc = errorMsg
         PushControl.setEnablePush(pushType)
         PushControl.init(isDebug, mContext)
     }

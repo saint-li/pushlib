@@ -19,7 +19,7 @@ public class MyPushReceiver extends BasePushReceiver {
 
     @Override
     public void onReceiveNotificationClick(Context context, ReceiverInfo info) {
-        if (info == null || TextUtils.isEmpty(info.getExtra())) {
+        if (info == null || info.getExtra() == null || info.getExtra().size() == 0) {
             Log.e(TAG, "NotificationClick为空或者Extra为空");
             return;
         }
@@ -29,7 +29,7 @@ public class MyPushReceiver extends BasePushReceiver {
 
     @Override
     public void onReceiveMessage(Context context, ReceiverInfo info) {
-        if (info == null || TextUtils.isEmpty(info.getExtra())) {
+        if (info == null || info.getExtra() == null || info.getExtra().size() == 0) {
             Log.e(TAG, "ReceiveMessage为空或者Extra为空");
             return;
         }
