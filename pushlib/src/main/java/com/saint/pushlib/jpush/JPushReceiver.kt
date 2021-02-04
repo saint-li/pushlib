@@ -6,7 +6,6 @@ import cn.jpush.android.api.JPushMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
 import com.saint.pushlib.PushConstant
-import com.saint.pushlib.PushControl.app
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 import com.saint.pushlib.util.PushLog.Companion.i
@@ -70,7 +69,7 @@ class JPushReceiver : JPushMessageReceiver() {
         val info = ReceiverInfo()
         info.title = notificationMessage.notificationTitle
         info.content = notificationMessage.notificationContent
-//        info.extra = notificationMessage.notificationExtras
+        info.extra = mapOf("extra" to notificationMessage.notificationExtras )
         info.pushType = PushConstant.JPUSH
         return info
     }

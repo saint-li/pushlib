@@ -32,11 +32,6 @@ class ReceiverInfo : Serializable {
      */
     var type = ""
 
-    /**
-     * 额外数据
-     */
-    var desc = ""
-
     override fun toString(): String {
         return "ReceiverInfo{" +
                 "pushType=" + pushType +

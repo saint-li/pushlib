@@ -43,8 +43,8 @@ abstract class BasePushInit(isDebug: Boolean, private var mApplication: Applicat
         val info = ReceiverInfo()
         info.title = title
         info.pushType = pushType
-        info.content = mContext.getString(R.string.init_failed)
-        info.desc = errorMsg
+        info.content = mContext.getString(R.string.init_failed) + errorMsg
+//        info.extra = mapOf("extra" to errorMsg)
         PushControl.setEnablePush(pushType)
         PushControl.init(isDebug, mContext)
     }
