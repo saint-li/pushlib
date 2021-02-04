@@ -1,6 +1,7 @@
 package com.saint.pushlib.mipush
 
 import android.content.Context
+import com.google.gson.Gson
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
@@ -88,8 +89,8 @@ class MiPushReceiver : PushMessageReceiver() {
         info.content = message.content
         info.pushType = PushConstant.XIAOMI
         info.title = message.title
-        if (message.content != null) {
-            info.extra = message.extra
+        if (message.extra != null) {
+            info.extra = Gson().toJson(message.extra)
         }
         return info
     }

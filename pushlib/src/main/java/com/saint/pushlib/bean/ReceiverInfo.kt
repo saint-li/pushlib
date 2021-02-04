@@ -25,7 +25,7 @@ class ReceiverInfo : Serializable {
     /**
      * 额外数据
      */
-    var extra: Map<String, String>? = null
+    var extra = ""
 
     /**
      * 额外数据
