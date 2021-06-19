@@ -3,16 +3,12 @@ package com.saint.pushlib.mipush
 import android.app.Application
 import android.text.TextUtils
 import com.saint.pushlib.BasePushInit
-import com.saint.pushlib.PushConstant
 import com.saint.pushlib.PushConstant.XIAOMI
-import com.saint.pushlib.PushControl.init
-import com.saint.pushlib.PushControl.setEnableMiPush
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 import com.saint.pushlib.util.PushLog.Companion.d
 import com.saint.pushlib.util.PushLog.Companion.e
-import com.saint.pushlib.util.PushLog.Companion.i
 import com.saint.pushlib.util.PushUtil.getMetaData
 import com.xiaomi.channel.commonutils.logger.LoggerInterface
 import com.xiaomi.mipush.sdk.Logger
