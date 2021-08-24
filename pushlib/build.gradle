@@ -55,7 +55,7 @@ dependencies {
     //华为推送
     implementation 'com.huawei.hms:push:5.3.0.304'
     //极光推送
-    implementation 'cn.jiguang.sdk:jpush:4.2.8'
+    implementation 'cn.jiguang.sdk:jpush:4.3.0'
     implementation 'cn.jiguang.sdk:jcore:2.9.0'
     //小米推送
     implementation files('libs/MiPush_SDK_Client_4_5_0.jar')
