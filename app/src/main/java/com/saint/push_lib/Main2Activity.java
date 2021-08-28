@@ -26,9 +26,9 @@ public class Main2Activity extends AppCompatActivity {
         initReceiver();
         PushControl.INSTANCE.init(true
                 , getApplication()
-                , true
-                , true
-                , true);
+                , false
+                , false
+                , false);
         tvInitResult.postDelayed(new Runnable() {
             @Override
             public void run() {
