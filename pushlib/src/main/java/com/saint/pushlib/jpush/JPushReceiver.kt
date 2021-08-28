@@ -34,7 +34,8 @@ class JPushReceiver : JPushMessageReceiver() {
     }
 
     override fun onNotifyMessageOpened(context: Context, message: NotificationMessage) {
-        super.onNotifyMessageOpened(context, message)
+//        super.onNotifyMessageOpened(context, message)
+
         i("极光通知Opened：$message")
         PushReceiverManager.onNotificationOpened(context, convertToReceiverInfo(message))
     }
