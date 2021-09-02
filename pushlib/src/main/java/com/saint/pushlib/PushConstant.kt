@@ -9,4 +9,5 @@ object PushConstant {
     const val XIAOMI = 2
     const val OPPO = 3
     const val VIVO = 4
+    const val MEIZU = 5
 }

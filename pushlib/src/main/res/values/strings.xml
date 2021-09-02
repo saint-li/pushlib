@@ -11,4 +11,5 @@
     <string name="HUAWEI">华为推送</string>
     <string name="XIAOMI">小米推送</string>
     <string name="OPPO">OPPO推送</string>
+    <string name="MEIZU">Flyme推送</string>
 </resources>

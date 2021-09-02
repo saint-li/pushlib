@@ -59,4 +59,12 @@ object RomUtil {
     fun isVivoRom(): Boolean {
         return !TextUtils.isEmpty(getSystemProperty("ro.vivo.os.version"))
     }
+
+    /**
+     * 判断是否为Flyme UI
+     */
+    fun isMeiZuRom(): Boolean {
+        val display = Build.DISPLAY
+        return !TextUtils.isEmpty(display) && display.contains("FLYME")
+    }
 }

@@ -5,15 +5,18 @@ import android.content.Context
 import com.heytap.mcssdk.PushManager
 import com.saint.pushlib.PushConstant.HUAWEI
 import com.saint.pushlib.PushConstant.JPUSH
+import com.saint.pushlib.PushConstant.MEIZU
 import com.saint.pushlib.PushConstant.OPPO
 import com.saint.pushlib.PushConstant.XIAOMI
 import com.saint.pushlib.hms.HmsPush
 import com.saint.pushlib.jpush.JPushInit
 import com.saint.pushlib.mipush.MiPushInit
+import com.saint.pushlib.mzpush.MZPushInit
 import com.saint.pushlib.opush.OPushInit
 import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushUtil.isMainProcess
 import com.saint.pushlib.util.RomUtil
+import com.vivo.push.PushClient
 
 object PushControl {
     /**
@@ -23,6 +26,7 @@ object PushControl {
     private var enableHWPush = true
     private var enableMiPush = true
     private var enableOPPOPush = true
+    private var enableMZPush = true
 
     var app: Application? = null
 
@@ -35,20 +39,21 @@ object PushControl {
          * 根据设备厂商和使用者设置来选择推送平台,小米的使用小米推送，华为使用华为推送...其他的使用极光推送
          */
         val type = getPhoneType(app)
-        mPushTarget = when (type) {
-            XIAOMI -> {
-                MiPushInit(isDebug, app)
-            }
-            HUAWEI -> {
-                HmsPush(isDebug, app)
-            }
-            OPPO -> {
-                OPushInit(isDebug, app)
-            }
-            else -> {
-                JPushInit(isDebug, app)
-            }
-        }
+//        mPushTarget = when (type) {
+//            XIAOMI -> {
+//                MiPushInit(isDebug, app)
+//            }
+//            HUAWEI -> {
+//                HmsPush(isDebug, app)
+//            }
+//            OPPO -> {
+//                OPushInit(isDebug, app)
+//            }
+//            else -> {
+//                JPushInit(isDebug, app)
+//            }
+//        }
+        mPushTarget = MZPushInit(isDebug, app)
     }
 
     fun init(
@@ -69,10 +74,13 @@ object PushControl {
             XIAOMI
         } else if (RomUtil.isOPPORom() && PushManager.isSupportPush(context) && enableOPPOPush) {
             OPPO
+        } else if (RomUtil.isMeiZuRom() && enableMZPush) {
+            MEIZU
         } else {
             JPUSH
         }
 
+        PushClient.getInstance(context).initialize()
 //         else if (RomUtil.isVivoRom() && PushClient.getInstance(context).isSupport() && enableVivoPush) {
 //            phoneType = VIVO;
 //        }

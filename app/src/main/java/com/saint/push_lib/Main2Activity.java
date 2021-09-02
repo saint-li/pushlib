@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.saint.pushlib.PushControl;
+import com.vivo.push.PushClient;
 
 public class Main2Activity extends AppCompatActivity {
 
