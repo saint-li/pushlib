@@ -12,7 +12,6 @@ import com.saint.pushlib.jpush.JPushInit
 import com.saint.pushlib.mipush.MiPushInit
 import com.saint.pushlib.opush.OPushInit
 import com.saint.pushlib.util.PushLog
-import com.saint.pushlib.util.PushUtil.isMainProcess
 import com.saint.pushlib.util.RomUtil
 
 object PushControl {
@@ -27,7 +26,6 @@ object PushControl {
     var app: Application? = null
 
     fun init(isDebug: Boolean, app: Application) {
-        if (!isMainProcess(app)) return
         this.app = app
         //日志打印
         PushLog.debug = isDebug
@@ -55,7 +53,6 @@ object PushControl {
         isDebug: Boolean, app: Application,
         enableHW: Boolean, enableMi: Boolean, enableOPPO: Boolean
     ) {
-        if (!isMainProcess(app)) return
         this.enableHWPush = enableHW
         this.enableMiPush = enableMi
         this.enableOPPOPush = enableOPPO
