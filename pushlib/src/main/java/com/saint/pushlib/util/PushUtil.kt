@@ -16,7 +16,7 @@ object PushUtil {
         return try {
             val appInfo = context.packageManager
                 .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-            appInfo.metaData.getString(key)
+            appInfo.metaData.get(key).toString()
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             ""
