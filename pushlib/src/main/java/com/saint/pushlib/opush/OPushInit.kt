@@ -23,15 +23,6 @@ import com.saint.pushlib.util.PushUtil.getMetaData
 
 class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
     private var getToken = false
-    override fun loginIn() {
-        var registerID = PushManager.getInstance().registerID
-        if (!TextUtils.isEmpty(registerID)) {
-            onToken(registerID, OPPO)
-        } else {
-            getToken = true
-            PushManager.getInstance().getRegister()
-        }
-    }
 
     /**
      * 推送初始化
@@ -53,6 +44,18 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
             )
         }
     }
+
+    override fun loginIn() {
+        var registerID = PushManager.getInstance().registerID
+        if (!TextUtils.isEmpty(registerID)) {
+            onToken(registerID, OPPO)
+        } else {
+            getToken = true
+            PushManager.getInstance().getRegister()
+        }
+    }
+
+
 
     inner class OPushAdapter : PushAdapter() {
 
