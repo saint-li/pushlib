@@ -1,23 +1,15 @@
 package com.saint.pushlib.opush
 
 import android.app.Application
-import android.content.Context
 import android.text.TextUtils
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import com.heytap.mcssdk.PushManager
-import com.heytap.mcssdk.callback.PushAdapter
-import com.heytap.mcssdk.callback.PushCallback
-import com.heytap.mcssdk.mode.SubscribeResult
+import com.heytap.msp.push.HeytapPushManager
+import com.heytap.msp.push.callback.ICallBackResultService
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.PushConstant.OPPO
-import com.saint.pushlib.PushControl.init
-import com.saint.pushlib.PushControl.setEnableOPPOPush
 import com.saint.pushlib.R
-import com.saint.pushlib.bean.ReceiverInfo
-import com.saint.pushlib.receiver.PushReceiverManager
-import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushLog.Companion.i
 import com.saint.pushlib.util.PushUtil.getMetaData
 
@@ -31,34 +23,28 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
      * @param application --
      */
     init {
+        HeytapPushManager.init(application, isDebug);
         val appSecret = getMetaData(application, "OPPO_SECRET")
         val appKey = getMetaData(application, "OPPO_APPKEY")
         i("appSecret:$appSecret appKey:$appKey")
-        if (!TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
-            PushManager.getInstance().register(application, appKey, appSecret, OPushAdapter())
+        if (HeytapPushManager.isSupportPush(application) && !TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
+            HeytapPushManager.register(application, appKey, appSecret, RegisterCallBack())
         } else {
-            initFailed(
-                getString(R.string.OPPO),
-                PushConstant.OPPO,
-                "OPPO_APPKEY=$appKey,appSecret=$appSecret"
-            )
+            initFailed(getString(R.string.OPPO), PushConstant.OPPO, "OPPO_APPKEY=$appKey,appSecret=$appSecret")
         }
     }
 
     override fun loginIn() {
-        var registerID = PushManager.getInstance().registerID
+        val registerID = HeytapPushManager.getRegisterID()
         if (!TextUtils.isEmpty(registerID)) {
             onToken(registerID, OPPO)
         } else {
             getToken = true
-            PushManager.getInstance().getRegister()
+            HeytapPushManager.getRegister()
         }
     }
 
-
-
-    inner class OPushAdapter : PushAdapter() {
-
+    inner class RegisterCallBack : ICallBackResultService {
         override fun onRegister(code: Int, s: String) {
             if (code == 0) {
                 if (getToken) {
@@ -82,6 +68,10 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
             }
         }
 
+        override fun onSetPushTime(code: Int, s: String) {
+            showResult("SetPushTime", "code=$code,result:$s")
+        }
+
         override fun onGetPushStatus(code: Int, status: Int) {
             if (code == 0 && status == 0) {
                 showResult("Push状态正常", "code=$code,status=$status")
@@ -98,8 +88,8 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
             }
         }
 
-        override fun onSetPushTime(code: Int, s: String) {
-            showResult("SetPushTime", "code=$code,result:$s")
+        override fun onError(code: Int, message: String?) {
+            showResult("OPUSH_ERROR", "Code:" + code + "  MSG:" + message)
         }
 
     }

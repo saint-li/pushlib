@@ -5,7 +5,6 @@ import cn.jpush.android.api.JPushInterface
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.PushConstant.JPUSH
-import com.saint.pushlib.PushControl.app
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
