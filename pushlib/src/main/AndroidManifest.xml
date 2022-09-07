@@ -124,13 +124,13 @@
 
         <!--//小米推送的AppKey ,APPID ****请务必在数值中间添加一个空格，否则会发生数值变化**** -->
 
-        <meta-data
-                android:name="MIPUSH_APPKEY"
-                android:value="${MIPUSH_APPKEY}" />
+<!--        <meta-data-->
+<!--                android:name="MIPUSH_APPKEY"-->
+<!--                android:value="${MIPUSH_APPKEY}" />-->
 
-        <meta-data
-                android:name="MIPUSH_APPID"
-                android:value="${MIPUSH_APPID}" />
+<!--        <meta-data-->
+<!--                android:name="MIPUSH_APPID"-->
+<!--                android:value="${MIPUSH_APPID}" />-->
 
         <!--//小米推送的AppKey ,APPID ****请务必在数值中间添加一个空格，否则会发生数值变化**** -->
 
