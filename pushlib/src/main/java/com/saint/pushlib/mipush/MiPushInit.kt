@@ -52,7 +52,6 @@ class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDe
                     Logger.setLogger(application, newLogger)
                 }
             } catch (e: Exception) {
-                PushLog.e("Cash_XIAOMI" + e.message)
                 initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
             }
         }
