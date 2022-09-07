@@ -32,6 +32,7 @@ allprojects {
         google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://mvnrepository.com/artifact/cn.jiguang.sdk.plugin/xiaomi' }
     }
 }
 
