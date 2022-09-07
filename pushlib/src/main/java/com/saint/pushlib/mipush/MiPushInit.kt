@@ -7,6 +7,7 @@ import com.saint.pushlib.PushConstant.XIAOMI
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
+import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushLog.Companion.d
 import com.saint.pushlib.util.PushLog.Companion.e
 import com.saint.pushlib.util.PushUtil.getMetaData
@@ -51,13 +52,14 @@ class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDe
                     Logger.setLogger(application, newLogger)
                 }
             } catch (e: Exception) {
+                PushLog.e("Cash_XIAOMI" + e.message)
                 initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
             }
         }
     }
 
     override fun loginIn() {
-        if (MiPushClient.getRegId(mContext) == null){
+        if (MiPushClient.getRegId(mContext) == null) {
             initFailed(getString(R.string.XIAOMI), XIAOMI, "获取小米pushId 错误")
             return
         }

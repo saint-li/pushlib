@@ -59,7 +59,7 @@ class MiPushReceiver : PushMessageReceiver() {
             }
             val info = convert2ReceiverInfo(message)
             info.title = context.getString(R.string.XIAOMI)
-            info.content = log
+            info.content = "$log：$message"
             PushReceiverManager.onRegistration(context, info)
         }
     }
