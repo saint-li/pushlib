@@ -18,8 +18,6 @@ buildscript {
         // in the individual module build.gradle files
         //华为push配置
         classpath 'com.huawei.agconnect:agcp:1.7.1.300'
-        //aar打包插件
-        classpath 'com.github.kezong:fat-aar:1.3.8'
     }
 }
 
