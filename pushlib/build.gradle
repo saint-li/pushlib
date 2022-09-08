@@ -53,19 +53,17 @@ dependencies {
     implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //华为推送
-    implementation 'com.huawei.hms:push:5.3.0.304'
+    implementation 'com.huawei.hms:push:6.5.0.300'
     //极光推送
-    implementation 'cn.jiguang.sdk:jpush:4.3.0'
-    implementation 'cn.jiguang.sdk:jcore:2.9.0'
+    implementation 'cn.jiguang.sdk:jpush:4.7.2'
+    implementation 'cn.jiguang.sdk:jcore:3.3.0'
     //小米推送
-    implementation files('libs/MiPush_SDK_Client_4_5_0.jar')
+    implementation 'com.xu5g.sdk.plugins:mipush:5.1.0'
     //OPPO推送
-//    implementation files('libs/mcssdk-2.0.2.jar')
-    implementation files('libs/push-3.0.0.aar')
-    //Gson
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'commons-codec:commons-codec:1.10'
-    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'com.xu5g.sdk.plugins:oppopush:3.1.0'
+    implementation 'commons-codec:commons-codec:1.6'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
 }
 repositories {
     mavenCentral()

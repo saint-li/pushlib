@@ -17,7 +17,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         //华为push配置
-        classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+        classpath 'com.huawei.agconnect:agcp:1.7.1.300'
     }
 }
 
@@ -30,6 +30,28 @@ allprojects {
         google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://mvnrepository.com/artifact/cn.jiguang.sdk.plugin/xiaomi' }
+        allprojects {
+            repositories {
+                maven {
+                    url 'https://maven.aliyun.com/repository/public'
+                }
+                maven {
+                    credentials {
+                        username '5f27cfb61d62073cee11f21d'
+                        password 'l-IwGYWg[cU2'
+                    }
+                    url 'https://packages.aliyun.com/maven/repository/2089923-release-lu4cxN/'
+                }
+                maven {
+                    credentials {
+                        username '5f27cfb61d62073cee11f21d'
+                        password 'l-IwGYWg[cU2'
+                    }
+                    url 'https://packages.aliyun.com/maven/repository/2089923-snapshot-Y5ZKUj/'
+                }
+            }
+        }
     }
 }
 

@@ -22,6 +22,7 @@
 
 #OPPO推送混淆配置
 -keep public class * extends android.app.Service
+-keep class com.heytap.msp.** { *;}
 
 #华为推送混淆配置
 -ignorewarnings

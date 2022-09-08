@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity {
         PushControl.INSTANCE.init(true
                 , getApplication()
                 , false
-                , false
+                , true
                 , false);
         tvInitResult.postDelayed(new Runnable() {
             @Override

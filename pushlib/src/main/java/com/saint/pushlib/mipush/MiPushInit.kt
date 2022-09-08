@@ -15,7 +15,48 @@ import com.xiaomi.mipush.sdk.Logger
 import com.xiaomi.mipush.sdk.MiPushClient
 
 class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
+    /**
+     * 推送初始化
+     *
+     * @param isDebug     设置debug模式
+     * @param application --
+     */
+    init {
+        //注册SDK
+        val appId = getMetaData(application, "MIPUSH_APPID")
+        val appKey = getMetaData(application, "MIPUSH_APPKEY")
+        if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(appKey)) {
+            initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
+        } else {
+            try {
+                MiPushClient.registerPush(application, appId!!.replace(" ".toRegex(), ""), appKey!!.replace(" ".toRegex(), ""))
+                if (isDebug) {
+                    val newLogger: LoggerInterface = object : LoggerInterface {
+                        override fun setTag(tag: String) {
+                            // ignore
+                        }
+
+                        override fun log(content: String, t: Throwable) {
+                            e(content, t)
+                        }
+
+                        override fun log(content: String) {
+                            d(content)
+                        }
+                    }
+                    Logger.setLogger(application, newLogger)
+                }
+            } catch (e: Exception) {
+                initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
+            }
+        }
+    }
+
     override fun loginIn() {
+        if (MiPushClient.getRegId(mContext) == null) {
+            initFailed(getString(R.string.XIAOMI), XIAOMI, "获取小米pushId 错误")
+            return
+        }
         onToken(MiPushClient.getRegId(mContext), XIAOMI)
     }
 
@@ -33,40 +74,5 @@ class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDe
         PushReceiverManager.onLoginOut(mContext, aliasInfo)
     }
 
-    /**
-     * 推送初始化
-     *
-     * @param isDebug     设置debug模式
-     * @param application --
-     */
-    init {
-        //注册SDK
-        val appId = getMetaData(application, "MIPUSH_APPID")
-        val appKey = getMetaData(application, "MIPUSH_APPKEY")
-        if (TextUtils.isEmpty(appId) || TextUtils.isEmpty(appKey)) {
-            initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
-        } else {
-            MiPushClient.registerPush(
-                application,
-                appId!!.replace(" ".toRegex(), ""),
-                appKey!!.replace(" ".toRegex(), "")
-            )
-            if (isDebug) {
-                val newLogger: LoggerInterface = object : LoggerInterface {
-                    override fun setTag(tag: String) {
-                        // ignore
-                    }
 
-                    override fun log(content: String, t: Throwable) {
-                        e(content, t)
-                    }
-
-                    override fun log(content: String) {
-                        d(content)
-                    }
-                }
-                Logger.setLogger(application, newLogger)
-            }
-        }
-    }
 }
