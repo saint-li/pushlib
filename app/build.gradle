@@ -29,8 +29,8 @@ android {
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "jpushappkey", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "develop-default", //暂时填写默认值即可.
-                MIPUSH_APPID : "28823 03761518072648",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
-                MIPUSH_APPKEY: "53418 07246648",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                MIPUSH_APPID : "miappid",//小米推送appId ****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
+                MIPUSH_APPKEY: "miappkey",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
                 OPPO_APPKEY  : "oppoappkey",//oppo推送Appkey配置
                 OPPO_SECRET  : "oppoappsecret",//oppo推送AppSecret配置
         ]

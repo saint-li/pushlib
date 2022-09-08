@@ -2,14 +2,14 @@ package com.saint.pushlib.opush
 
 import android.content.Context
 import com.heytap.msp.push.mode.DataMessage
-import com.heytap.msp.push.service.CompatibleDataMessageCallbackService
+import com.heytap.msp.push.service.DataMessageCallbackService
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 import com.saint.pushlib.util.PushLog.Companion.e
 
-//Android 10(Q)一下兼容版本
-class OppoPushService : CompatibleDataMessageCallbackService() {
+//Android 10(Q)兼容版本
+class OppoAppPushService : DataMessageCallbackService() {
     /**
      * 普通应用消息
      *
@@ -17,7 +17,7 @@ class OppoPushService : CompatibleDataMessageCallbackService() {
      * @param appMessage
      */
     override fun processMessage(context: Context, appMessage: DataMessage) {
-        e("OppoPushService: handle:$appMessage")
+        e("OppoAppPushService: handle:$appMessage")
         val info = ReceiverInfo()
         info.title = appMessage.title
         info.content = appMessage.content

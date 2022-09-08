@@ -2,7 +2,7 @@ package com.saint.pushlib
 
 import android.app.Application
 import android.content.Context
-import com.heytap.mcssdk.PushManager
+import com.heytap.msp.push.HeytapPushManager
 import com.saint.pushlib.PushConstant.HUAWEI
 import com.saint.pushlib.PushConstant.JPUSH
 import com.saint.pushlib.PushConstant.OPPO
@@ -64,7 +64,7 @@ object PushControl {
             HUAWEI
         } else if (RomUtil.isMiuiRom() && enableMiPush) {
             XIAOMI
-        } else if (RomUtil.isOPPORom() && PushManager.isSupportPush(context) && enableOPPOPush) {
+        } else if (RomUtil.isOPPORom() && HeytapPushManager.isSupportPush(context) && enableOPPOPush) {
             OPPO
         } else {
             JPUSH

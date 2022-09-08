@@ -1,28 +1,21 @@
 package com.saint.pushlib.opush
 
 import android.app.Application
-import android.content.Context
 import android.text.TextUtils
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import com.heytap.mcssdk.PushManager
-import com.heytap.mcssdk.callback.PushAdapter
-import com.heytap.mcssdk.callback.PushCallback
-import com.heytap.mcssdk.mode.SubscribeResult
+import com.heytap.msp.push.HeytapPushManager
+import com.heytap.msp.push.callback.ICallBackResultService
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.PushConstant.OPPO
-import com.saint.pushlib.PushControl.init
-import com.saint.pushlib.PushControl.setEnableOPPOPush
 import com.saint.pushlib.R
-import com.saint.pushlib.bean.ReceiverInfo
-import com.saint.pushlib.receiver.PushReceiverManager
-import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushLog.Companion.i
 import com.saint.pushlib.util.PushUtil.getMetaData
 
-class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
-    private var getToken = false
+class OPushInit(isDebug: Boolean, private val application: Application) : BasePushInit(isDebug, application) {
+    private val appSecret = getMetaData(application, "OPPO_SECRET")
+    private val appKey = getMetaData(application, "OPPO_APPKEY")
 
     /**
      * 推送初始化
@@ -31,46 +24,30 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
      * @param application --
      */
     init {
-        val appSecret = getMetaData(application, "OPPO_SECRET")
-        val appKey = getMetaData(application, "OPPO_APPKEY")
-        i("appSecret:$appSecret appKey:$appKey")
         if (!TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
-            PushManager.getInstance().register(application, appKey, appSecret, OPushAdapter())
+            HeytapPushManager.init(application, isDebug)
         } else {
-            initFailed(
-                getString(R.string.OPPO),
-                PushConstant.OPPO,
-                "OPPO_APPKEY=$appKey,appSecret=$appSecret"
-            )
+            initFailed(getString(R.string.OPPO), OPPO, "OPPO_APPKEY=$appKey,appSecret=$appSecret")
         }
     }
 
     override fun loginIn() {
-        var registerID = PushManager.getInstance().registerID
-        if (!TextUtils.isEmpty(registerID)) {
-            onToken(registerID, OPPO)
+        if (!TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
+            HeytapPushManager.register(application, appKey, appSecret, OPushRegisterCallBack())
         } else {
-            getToken = true
-            PushManager.getInstance().getRegister()
+            initFailed(getString(R.string.OPPO), OPPO, "OPPO_APPKEY=$appKey,appSecret=$appSecret")
         }
     }
 
-
-
-    inner class OPushAdapter : PushAdapter() {
+    inner class OPushRegisterCallBack : ICallBackResultService {
 
         override fun onRegister(code: Int, s: String) {
             if (code == 0) {
-                if (getToken) {
-                    showResult("获取RegisterId成功", "registerId:$s")
-                    onToken(s, OPPO)
-                } else {
-                    showResult("注册成功", "registerId:$s")
-                    initSucceed(getString(R.string.OPPO), PushConstant.OPPO)
-                }
+                showResult("获取RegisterId成功", "registerId:$s")
+                onToken(s, OPPO)
             } else {
                 showResult("注册失败", "code=$code,msg=$s")
-                initFailed(getString(R.string.OPPO), PushConstant.OPPO, "code=$code,msg=$s")
+                initFailed(getString(R.string.OPPO), OPPO, "code=$code,msg=$s")
             }
         }
 
@@ -96,6 +73,10 @@ class OPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
             } else {
                 showResult("通知状态错误", "code=$code,status=$status")
             }
+        }
+
+        override fun onError(code: Int, s: String?) {
+            showResult("onError", "onError code = $code   msg = $s")
         }
 
         override fun onSetPushTime(code: Int, s: String) {
