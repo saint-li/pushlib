@@ -33,8 +33,6 @@ android {
                 MIPUSH_APPKEY: "53418 07246648",//小米推送appKey****纯数字请务必在数值中间添加一个空格，否则会发生数值变化
                 OPPO_APPKEY  : "oppoappkey",//oppo推送Appkey配置
                 OPPO_SECRET  : "oppoappsecret",//oppo推送AppSecret配置
-                XIAOMI_APPID : '',
-                XIAOMI_APPKEY: ''
         ]
     }
 

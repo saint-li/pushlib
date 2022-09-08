@@ -7,7 +7,6 @@ import com.saint.pushlib.PushConstant.XIAOMI
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
-import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushLog.Companion.d
 import com.saint.pushlib.util.PushLog.Companion.e
 import com.saint.pushlib.util.PushUtil.getMetaData
@@ -30,11 +29,7 @@ class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDe
             initFailed(getString(R.string.XIAOMI), XIAOMI, "appId:$appId appKey:$appKey")
         } else {
             try {
-                MiPushClient.registerPush(
-                    application,
-                    appId!!.replace(" ".toRegex(), ""),
-                    appKey!!.replace(" ".toRegex(), "")
-                )
+                MiPushClient.registerPush(application, appId!!.replace(" ".toRegex(), ""), appKey!!.replace(" ".toRegex(), ""))
                 if (isDebug) {
                     val newLogger: LoggerInterface = object : LoggerInterface {
                         override fun setTag(tag: String) {
