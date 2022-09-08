@@ -10,19 +10,6 @@ import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 
 class JPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
-
-    /**
-     * 推送初始化
-     *
-     * @param isDebug     设置debug模式
-     * @param application --
-     */
-    init {
-        JPushInterface.setDebugMode(isDebug)
-        JPushInterface.init(application)
-        initSucceed(getString(R.string.JPUSH), JPUSH)
-    }
-
     override fun loginIn() {
         onToken(JPushInterface.getRegistrationID(mContext), JPUSH)
     }
@@ -41,4 +28,15 @@ class JPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
         PushReceiverManager.onLoginOut(mContext, aliasInfo)
     }
 
+    /**
+     * 推送初始化
+     *
+     * @param isDebug     设置debug模式
+     * @param application --
+     */
+    init {
+        JPushInterface.setDebugMode(isDebug)
+        JPushInterface.init(application)
+        initSucceed(getString(R.string.JPUSH), JPUSH)
+    }
 }
