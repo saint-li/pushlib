@@ -52,13 +52,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //华为推送
-    implementation 'com.huawei.hms:push:6.5.0.300'
     //极光推送
-    implementation 'cn.jiguang.sdk:jpush:4.7.2'
-    implementation 'cn.jiguang.sdk:jcore:3.3.0'
+    implementation 'cn.jiguang.sdk:jpush:4.8.5'
+    implementation 'cn.jiguang.sdk:jcore:4.0.0'
+    //华为推送
+    implementation 'com.huawei.hms:push:6.7.0.300'
     //小米推送
-    implementation 'com.xu5g.sdk.plugins:mipush:5.1.0'
+    implementation 'com.xu5g.sdk.plugins:mipush:5.3.0'
     //OPPO推送
     implementation 'com.xu5g.sdk.plugins:oppopush:3.1.0'
     implementation 'commons-codec:commons-codec:1.6'
