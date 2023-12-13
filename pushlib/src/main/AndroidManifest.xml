@@ -128,6 +128,7 @@
 
         <service
             android:name="com.saint.pushlib.opush.OppoPushService"
+            android:exported="true"
             android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
             <intent-filter>
                 <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE" />
@@ -136,6 +137,7 @@
 
         <service
             android:name="com.saint.pushlib.opush.OppoAppPushService"
+            android:exported="true"
             android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE">
             <intent-filter>
                 <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE" />
@@ -143,7 +145,6 @@
             </intent-filter>
         </service>
         <!--   OPPOPush  结束     -->
-
 
     </application>
 
