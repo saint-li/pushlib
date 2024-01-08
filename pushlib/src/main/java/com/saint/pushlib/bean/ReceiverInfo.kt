@@ -12,6 +12,7 @@ class ReceiverInfo : Serializable {
      */
     var pushType = PushConstant.JPUSH
 
+
     /**
      * 标题
      */
@@ -32,6 +33,34 @@ class ReceiverInfo : Serializable {
      */
     var type = ""
 
+    /**
+     * 推送平台名称
+     */
+    fun parseTypeName(): String {
+        when (pushType) {
+            PushConstant.JPUSH -> {
+                return "极光"
+            }
+
+            PushConstant.HUAWEI -> {
+                return "华为"
+            }
+
+            PushConstant.XIAOMI -> {
+                return "小米"
+            }
+
+            PushConstant.OPPO -> {
+                return "OPPO"
+            }
+
+            PushConstant.VIVO -> {
+                return "VIVO"
+            }
+        }
+        return "未知或为接入平台"
+    }
+
     override fun toString(): String {
         return "ReceiverInfo{" +
                 "pushType=" + pushType +
@@ -39,6 +68,8 @@ class ReceiverInfo : Serializable {
                 ", content='" + content + '\'' +
                 ", extra='" + extra + '\'' +
                 ", type='" + type + '\'' +
+                ", type='" + type + '\'' +
+                ", pushTypeName='" + parseTypeName() + '\'' +
                 '}'
     }
 
