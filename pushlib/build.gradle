@@ -58,7 +58,7 @@ dependencies {
     //华为推送
     implementation 'com.huawei.hms:push:6.12.0.300'
     //小米推送
-    implementation 'com.xu5g.sdk.plugins:mipush:5.3.0'
+    implementation 'com.xu5g.sdk.plugins:mipush:5.9.9'
     //OPPO推送
     implementation 'com.xu5g.sdk.plugins:oppopush:3.1.0'
     implementation 'commons-codec:commons-codec:1.6'
