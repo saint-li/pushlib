@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.5.21'
+    ext.kotlin_version = '1.7.20'
     repositories {
         maven {
             url "https://maven.aliyun.com/repository/public"
@@ -12,12 +12,12 @@ buildscript {
         maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         //华为push配置
-        classpath 'com.huawei.agconnect:agcp:1.7.1.300'
+        classpath 'com.huawei.agconnect:agcp:1.9.1.301'
     }
 }
 
@@ -31,26 +31,13 @@ allprojects {
         maven { url 'https://jitpack.io' }
         maven { url 'https://developer.huawei.com/repo/' }
         maven { url 'https://mvnrepository.com/artifact/cn.jiguang.sdk.plugin/xiaomi' }
-        allprojects {
-            repositories {
-                maven {
-                    url 'https://maven.aliyun.com/repository/public'
-                }
-                maven {
-                    credentials {
-                        username '5f27cfb61d62073cee11f21d'
-                        password 'l-IwGYWg[cU2'
-                    }
-                    url 'https://packages.aliyun.com/maven/repository/2089923-release-lu4cxN/'
-                }
-                maven {
-                    credentials {
-                        username '5f27cfb61d62073cee11f21d'
-                        password 'l-IwGYWg[cU2'
-                    }
-                    url 'https://packages.aliyun.com/maven/repository/2089923-snapshot-Y5ZKUj/'
-                }
+
+        maven {
+            credentials {
+                username aliUser
+                password aliPwd
             }
+            url 'https://packages.aliyun.com/maven/repository/2089923-release-lu4cxN/'
         }
     }
 }

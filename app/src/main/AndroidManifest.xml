@@ -12,7 +12,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".Main2Activity">
+        <activity
+            android:name=".Main2Activity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +23,9 @@
         </activity>
 
         <!-- 推送消息接收器  开始     -->
-        <receiver android:name=".MyPushReceiver">
+        <receiver
+            android:name=".MyPushReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.saint.pushlib.ACTION_RECEIVE_NOTIFICATION" />
                 <action android:name="com.saint.pushlib.ACTION_RECEIVE_NOTIFICATION_CLICK" />
