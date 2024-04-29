@@ -19,9 +19,7 @@ object PushControl {
      * 当前的推送平台，默认为极光 JPUSH
      */
     private var mPushTarget: BasePushInit? = null
-    private var enableHWPush = true
-    private var enableMiPush = true
-    private var enableOPPOPush = true
+    private var pushConfig = PushConfig()
 
     var app: Application? = null
 
@@ -37,34 +35,32 @@ object PushControl {
             XIAOMI -> {
                 MiPushInit(isDebug, app)
             }
+
             HUAWEI -> {
                 HmsPush(isDebug, app)
             }
+
             OPPO -> {
                 OPushInit(isDebug, app)
             }
+
             else -> {
-                JPushInit(isDebug, app)
+                JPushInit(isDebug, app, pushConfig)
             }
         }
     }
 
-    fun init(
-        isDebug: Boolean, app: Application,
-        enableHW: Boolean, enableMi: Boolean, enableOPPO: Boolean
-    ) {
-        this.enableHWPush = enableHW
-        this.enableMiPush = enableMi
-        this.enableOPPOPush = enableOPPO
+    fun init(isDebug: Boolean, app: Application, config: PushConfig) {
+        this.pushConfig = config
         init(isDebug, app)
     }
 
     private fun getPhoneType(context: Context?): Int {
-        val phoneType: Int = if (RomUtil.isHuaweiRom() && enableHWPush) {
+        val phoneType: Int = if (RomUtil.isHuaweiRom() && pushConfig.enableHWPush) {
             HUAWEI
-        } else if (RomUtil.isMiuiRom() && enableMiPush) {
+        } else if (RomUtil.isMiuiRom() && pushConfig.enableMiPush) {
             XIAOMI
-        } else if (RomUtil.isOPPORom() && HeytapPushManager.isSupportPush(context) && enableOPPOPush) {
+        } else if (RomUtil.isOPPORom() && HeytapPushManager.isSupportPush(context) && pushConfig.enableOPPOPush) {
             OPPO
         } else {
             JPUSH
@@ -95,15 +91,15 @@ object PushControl {
     }
 
     fun setEnableHWPush(enableHWPush: Boolean) {
-        this.enableHWPush = enableHWPush
+        this.pushConfig.enableHWPush = enableHWPush
     }
 
     fun setEnableMiPush(enableMiPush: Boolean) {
-        this.enableMiPush = enableMiPush
+        this.pushConfig.enableMiPush = enableMiPush
     }
 
     fun setEnableOPPOPush(enableOPPOPush: Boolean) {
-        this.enableOPPOPush = enableOPPOPush
+        this.pushConfig.enableOPPOPush = enableOPPOPush
     }
 
     fun setEnablePush(type: Int) {
@@ -112,6 +108,10 @@ object PushControl {
             XIAOMI -> setEnableMiPush(false)
             OPPO -> setEnableOPPOPush(false)
         }
+    }
+
+    fun getPushConfig(): PushConfig {
+        return pushConfig
     }
 
     fun setAlias(alias: String?) {

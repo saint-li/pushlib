@@ -1,15 +1,17 @@
 package com.saint.pushlib.jpush
 
 import android.app.Application
+import cn.jiguang.api.utils.JCollectionAuth
 import cn.jpush.android.api.JPushInterface
 import com.saint.pushlib.BasePushInit
+import com.saint.pushlib.PushConfig
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.PushConstant.JPUSH
 import com.saint.pushlib.R
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 
-class JPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDebug, application) {
+class JPushInit(isDebug: Boolean, application: Application,pushConfig: PushConfig) : BasePushInit(isDebug, application) {
     override fun loginIn() {
         onToken(JPushInterface.getRegistrationID(mContext), JPUSH)
     }
@@ -36,6 +38,9 @@ class JPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDeb
      */
     init {
         JPushInterface.setDebugMode(isDebug)
+        JPushInterface.setSmartPushEnable(application,pushConfig.enableJPushSmart)
+        JPushInterface.setLbsEnable(application,pushConfig.enableJPushLBS)
+        JCollectionAuth.enableAutoWakeup(application,pushConfig.enableJPushAutoWakeup)
         JPushInterface.init(application)
         initSucceed(getString(R.string.JPUSH), JPUSH)
     }
