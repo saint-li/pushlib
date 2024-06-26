@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.saint.pushlib.PushConfig;
 import com.saint.pushlib.PushControl;
 
 public class Main2Activity extends AppCompatActivity {
@@ -24,11 +25,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         tvInitResult = findViewById(R.id.tv_init_result);
         initReceiver();
-        PushControl.INSTANCE.init(true
-                , getApplication()
-                , false
-                , true
-                , false);
+        PushControl.INSTANCE.init(true, getApplication(), new PushConfig());
         tvInitResult.postDelayed(new Runnable() {
             @Override
             public void run() {

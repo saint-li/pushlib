@@ -59,7 +59,7 @@ dependencies {
     //小米推送
     implementation 'com.xu5g.sdk.plugins:mipush:6.0.1'
     //OPPO推送
-    implementation 'com.xu5g.sdk.plugins:oppopush:3.5.1'
+    implementation 'com.xu5g.sdk.plugins:oppopush:3.5.2'
     implementation 'commons-codec:commons-codec:1.6'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.code.gson:gson:2.10.1'
