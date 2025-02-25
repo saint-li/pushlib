@@ -133,6 +133,6 @@ object PushControl {
     }
     //是否允许应用内消息 -- OPPO
     fun enableAppNotificationSwitch(boolean: Boolean){
-
+        mPushTarget!!.enableAppNotificationSwitch(boolean)
     }
 }
