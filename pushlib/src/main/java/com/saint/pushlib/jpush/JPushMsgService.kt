@@ -3,13 +3,13 @@ package com.saint.pushlib.jpush
 import android.content.Context
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
-import cn.jpush.android.service.JPushMessageService
+import cn.jpush.android.service.JPushMessageReceiver
 import com.saint.pushlib.PushConstant
 import com.saint.pushlib.bean.ReceiverInfo
 import com.saint.pushlib.receiver.PushReceiverManager
 import com.saint.pushlib.util.PushLog.Companion.i
 
-class JPushMsgService:JPushMessageService() {
+class JPushMsgService: JPushMessageReceiver() {
     override fun onRegister(context: Context, token: String) {
         super.onRegister(context, token)
         i("极光ID注册： $token")
