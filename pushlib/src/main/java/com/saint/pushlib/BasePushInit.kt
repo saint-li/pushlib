@@ -30,6 +30,10 @@ abstract class BasePushInit(isDebug: Boolean, private var mApplication: Applicat
 
     open fun loginOut() {}
     open fun loginIn() {}
+    open fun clearNotificationAll() {}
+    open fun turnOnPush() {}
+    open fun turnOffPush() {}
+    open fun enableAppNotificationSwitch(boolean: Boolean) {}
 
     protected fun initSucceed(title: String, pushType: Int) {
         val info = ReceiverInfo()

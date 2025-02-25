@@ -74,5 +74,8 @@ class MiPushInit(isDebug: Boolean, application: Application) : BasePushInit(isDe
         PushReceiverManager.onLoginOut(mContext, aliasInfo)
     }
 
+    override fun clearNotificationAll() {
+        MiPushClient.clearNotification(mContext)
+    }
 
 }

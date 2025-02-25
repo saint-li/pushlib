@@ -67,9 +67,8 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
         }.start()
     }
 
-
-    fun turnOnPush(context: Context?) {
-        HmsMessaging.getInstance(context).turnOnPush()
+    override fun turnOnPush() {
+        HmsMessaging.getInstance(mContext).turnOnPush()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     i("turnOnPush Complete")
@@ -79,8 +78,8 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
             }
     }
 
-    fun turnOffPush(context: Context?) {
-        HmsMessaging.getInstance(context).turnOffPush()
+    override fun turnOffPush() {
+        HmsMessaging.getInstance(mContext).turnOffPush()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     i("turnOffPush Complete")
@@ -89,5 +88,4 @@ class HmsPush(isDebug: Boolean, application: Application) : BasePushInit(isDebug
                 }
             }
     }
-
 }

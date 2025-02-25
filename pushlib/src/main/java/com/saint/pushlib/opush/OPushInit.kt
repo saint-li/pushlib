@@ -4,9 +4,11 @@ import android.app.Application
 import android.text.TextUtils
 import com.heytap.msp.push.HeytapPushManager
 import com.heytap.msp.push.callback.ICallBackResultService
+import com.heytap.msp.push.callback.ISetAppNotificationCallBackService
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant.OPPO
 import com.saint.pushlib.R
+import com.saint.pushlib.util.PushLog
 import com.saint.pushlib.util.PushLog.Companion.i
 import com.saint.pushlib.util.PushUtil.getMetaData
 
@@ -78,6 +80,15 @@ class OPushInit(isDebug: Boolean, private val application: Application) : BasePu
         override fun onError(errorCode: Int, message: String?, packageName: String?, miniProgramPkg: String?) {
             showResult("onError", "onError errorCode = $errorCode   msg = $message")
         }
+
+    }
+
+    override fun enableAppNotificationSwitch(boolean: Boolean) {
+        if (boolean) {
+            HeytapPushManager.enableAppNotificationSwitch { p0 -> PushLog.e("开启应用内消息结果：$p0") }
+        } else {
+            HeytapPushManager.disableAppNotificationSwitch { p0 -> PushLog.e("关闭应用内消息结果：$p0") }
+        }
     }
 
     /**
@@ -87,4 +98,8 @@ class OPushInit(isDebug: Boolean, private val application: Application) : BasePu
         i("$tag:$msg")
     }
 
+    override fun clearNotificationAll() {
+        super.clearNotificationAll()
+        HeytapPushManager.clearNotifications()
+    }
 }

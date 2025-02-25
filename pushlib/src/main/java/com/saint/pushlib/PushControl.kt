@@ -117,4 +117,22 @@ object PushControl {
     fun setAlias(alias: String?) {
         mPushTarget!!.setAlias(alias)
     }
+
+
+    fun clearNotificationAll(){
+        mPushTarget!!.clearNotificationAll()
+    }
+
+    //允许通知栏消息显示 -- 华为
+    fun turnOnPush(){
+        mPushTarget!!.turnOnPush()
+    }
+    //关闭通知栏消息显示 -- 华为
+    fun turnOffPush(){
+        mPushTarget!!.turnOffPush()
+    }
+    //是否允许应用内消息 -- OPPO
+    fun enableAppNotificationSwitch(boolean: Boolean){
+
+    }
 }

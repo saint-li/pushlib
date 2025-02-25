@@ -39,9 +39,14 @@ class JPushInit(isDebug: Boolean, application: Application,pushConfig: PushConfi
     init {
         JPushInterface.setDebugMode(isDebug)
         JPushInterface.setSmartPushEnable(application,pushConfig.enableJPushSmart)
-        JPushInterface.setLbsEnable(application,pushConfig.enableJPushLBS)
+//        JPushInterface.setLbsEnable(application,pushConfig.enableJPushLBS)
         JCollectionAuth.enableAutoWakeup(application,pushConfig.enableJPushAutoWakeup)
         JPushInterface.init(application)
         initSucceed(getString(R.string.JPUSH), JPUSH)
+    }
+
+    override fun clearNotificationAll() {
+        super.clearNotificationAll()
+        JPushInterface.clearAllNotifications(mContext)
     }
 }
