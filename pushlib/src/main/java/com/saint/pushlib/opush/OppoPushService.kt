@@ -17,6 +17,7 @@ class OppoPushService : CompatibleDataMessageCallbackService() {
      * @param appMessage
      */
     override fun processMessage(context: Context, appMessage: DataMessage) {
+        super.processMessage(context.applicationContext,appMessage)
         e("OppoPushService: handle:$appMessage")
         val info = ReceiverInfo()
         info.title = appMessage.title

@@ -4,7 +4,6 @@ import android.app.Application
 import android.text.TextUtils
 import com.heytap.msp.push.HeytapPushManager
 import com.heytap.msp.push.callback.ICallBackResultService
-import com.heytap.msp.push.callback.ISetAppNotificationCallBackService
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConstant.OPPO
 import com.saint.pushlib.R
@@ -33,6 +32,9 @@ class OPushInit(isDebug: Boolean, private val application: Application) : BasePu
     override fun loginIn() {
         if (!TextUtils.isEmpty(appKey) && !TextUtils.isEmpty(appSecret)) {
             HeytapPushManager.register(application, appKey, appSecret, oPushCallBack)
+//            HeytapPushManager.setPushCallback(oPushCallBack)
+//             HeytapPushManager.setNotificationType()
+//            enableAppNotificationSwitch(true)
         } else {
             initFailed(getString(R.string.OPPO), OPPO, "OPPO_APPKEY=$appKey,appSecret=$appSecret")
         }
@@ -80,6 +82,7 @@ class OPushInit(isDebug: Boolean, private val application: Application) : BasePu
         override fun onError(errorCode: Int, message: String?, packageName: String?, miniProgramPkg: String?) {
             showResult("onError", "onError errorCode = $errorCode   msg = $message")
         }
+
 
     }
 

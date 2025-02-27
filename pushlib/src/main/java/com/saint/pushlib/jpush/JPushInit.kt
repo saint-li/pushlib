@@ -3,6 +3,7 @@ package com.saint.pushlib.jpush
 import android.app.Application
 import cn.jiguang.api.utils.JCollectionAuth
 import cn.jpush.android.api.JPushInterface
+import cn.jpush.android.data.JPushConfig
 import com.saint.pushlib.BasePushInit
 import com.saint.pushlib.PushConfig
 import com.saint.pushlib.PushConstant
@@ -42,6 +43,7 @@ class JPushInit(isDebug: Boolean, application: Application,pushConfig: PushConfi
 //        JPushInterface.setLbsEnable(application,pushConfig.enableJPushLBS)
         JCollectionAuth.enableAutoWakeup(application,pushConfig.enableJPushAutoWakeup)
         JPushInterface.init(application)
+        JCollectionAuth.setAuth(mContext,true)
         initSucceed(getString(R.string.JPUSH), JPUSH)
     }
 
