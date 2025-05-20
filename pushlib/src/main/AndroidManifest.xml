@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.saint.pushlib">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--   OPPOPush权限  开始     -->
     <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" />
